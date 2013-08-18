@@ -40,11 +40,11 @@ function calandular_upgrade_blog( $blog_id ) {
 add_action('wpmu_upgrade_site','calandular_upgrade_blog',10);
 
 function calendular_activate() {
-	require_once( dirname(__FILE__). '/inc/class-installer.php' );
+	require_once( dirname(__FILE__). '/inc/class-Installer.php' );
 	CalendularInstaller::activate();
 }
 function calendular_deactivate() {
-	require_once( dirname(__FILE__). '/inc/class-installer.php' );
+	require_once( dirname(__FILE__). '/inc/class-Installer.php' );
 	CalendularInstaller::deactivate();
 }
 
