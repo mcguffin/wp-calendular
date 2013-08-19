@@ -30,7 +30,10 @@ class CalendulaFrontend {
 		else 
 			$calendar = new Calendar( );
 		
-		return self::print_calendar( $calendar , $range ,'html' );
+		$result = '<section class="calendar">';
+		$result .= self::print_calendar( $calendar , $range ,'html' );
+		$result .= '</section>';
+		return $result;
 	}
 	
 	static function template_redirect(  ) {
@@ -85,7 +88,8 @@ class CalendulaFrontend {
 	static function enqueue_scripts() {
 		if ( ! is_admin() ) {
 			wp_enqueue_style( 'calendular' , plugins_url('/css/calendular.css' , dirname(__FILE__) ) );
-			wp_enqueue_script( 'calendular' , plugins_url('/js/calendular.js' , dirname(__FILE__) ) , array('jquery') );
+			wp_enqueue_script( 'jquery-address' , plugins_url('/js/jquery.address-1.5.min.js' , dirname(__FILE__) ) , array('jquery') );
+			wp_enqueue_script( 'calendular' , plugins_url('/js/calendular.js' , dirname(__FILE__) ) , array('jquery','jquery-address') );
 		}
 	}
 	static function query_vars( $qvs ){
@@ -158,10 +162,11 @@ class CalendulaFrontend {
 				$months = array('January','February','March','April','May','June','July','August','September','October','November','December');
 
 				$original_range_time = strtotime($original_range);
-
+				$pta_link = get_post_type_archive_link('calendar');
+				$pta_link = str_replace( home_url() , '' , $pta_link );
 				$time_prev = strtotime( "-1 $range_scope" , $original_range_time );
 				$href_prev = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_prev ) );
-				$href_prev_html = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_prev ) , get_post_type_archive_link('calendar'));
+				$href_prev_html = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_prev ) , $pta_link );
 				$href_prev_html = add_query_arg( 'calendar_format','html',$href_prev_html );
 				$name_prev = sprintf( '<span class="prev month">%1$s</span><span class="prev year">%2$s</span>', 
 					__( strftime('%b',$time_prev) ) , 
@@ -170,7 +175,7 @@ class CalendulaFrontend {
 
 				$time_next = strtotime( "+1 $range_scope" , $original_range_time );
 				$href_next = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_next ) );
-				$href_next_html = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_next ) , get_post_type_archive_link('calendar'));
+				$href_next_html = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_next ) , $pta_link );
 				$href_next_html = add_query_arg( 'calendar_format','html',$href_next_html );
 				$name_next = sprintf( '<span class="next month">%1$s</span><span class="next year">%2$s</span>', 
 					__( strftime('%b',$time_next ) ) , 
@@ -180,7 +185,6 @@ class CalendulaFrontend {
 				
 				$result = '';
 				
-				$result .= '<section class="calendar">';
 				$result .= '<header class="calendar-header">';
 				// add calendar nav
 				$result .= sprintf('<a class="navigation prev-sheet" data-href-html="%3$s" href="%1$s">%2$s</a>' , $href_prev , $name_prev , $href_prev_html );
@@ -279,7 +283,6 @@ class CalendulaFrontend {
 				
 				$result .= '</table>';
 				
-				$result .= '</section>';
 				
 				break;
 		}
