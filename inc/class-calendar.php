@@ -168,7 +168,7 @@ class Calendar {
 			}
 		}
 	}
-	function query_events( $range , $create_new_query = false , $calandars ) {
+	function query_events( $range , $create_new_query = false , $calandars = null ) {
 		global $wp_query;
 		
 		if ( $create_new_query )
@@ -417,7 +417,7 @@ class RemoteCalendar extends Calendar implements ICalendar {
 //		call_user_func( "delete_{$transient_callback}" , $transient_key );
 		
 		//call_user_func( "delete_{$transient_callback}" , $transient_key ) ;
-		if ( $calendar_data['sync'] || false === ($remote_data = call_user_func( "get_{$transient_callback}" , $transient_key ) )) {
+		if ( $calendar_data['sync'] || false === ($remote_data = call_user_func( "get_{$transient_callback}" , $transient_key ) ) ) {
 			// set $remote_data
 			
 			$vcal_config = array(
@@ -429,9 +429,22 @@ class RemoteCalendar extends Calendar implements ICalendar {
 			$remote_data->parse();
 			$remote_data->sort();
 			$this->sync( $remote_data , $post );
-			$expires = 60*60*24; // refresh dayly
+			
+			$schedules = wp_get_schedules();
+			$sync_interval = strtolower($calendar_data['_calendar_remote_sync_interval']);
+
+			$expires = $schedules[$sync_interval]['interval']; // refresh dayly
 			call_user_func( "set_{$transient_callback}" , $transient_key , $remote_data , $expires );
 		}
+		
+		if ( $sync_interval = $calendar_data['_calendar_remote_sync_interval'] ) {
+			
+			$cron_task_hook = "calendar_cron_{$sync_interval}";
+			if ( ! wp_next_scheduled( $cron_task_hook ) )
+				wp_schedule_event( time(), $sync_interval , $cron_task_hook );
+		}
+		
+		
 		
 		// delete everything afterwards.
 		
@@ -445,6 +458,27 @@ class RemoteCalendar extends Calendar implements ICalendar {
 		
 		// delete child posts
 		$this->delete_events( $post_ID );
+	}
+	
+	public static function synchronize_calendar( $calendar_ID ) {
+		$remote_url = get_post_meta( $calendar_ID , '_calendar_remote_url' , 'true' );
+		$remote_url = str_replace( 'https://','http://',$remote_url );
+		$transient_key = "calendar_{$calendar_ID}";
+		$transient_callback = get_post_meta( $calendar_ID , '_calendar_is_networkwide' , 'true' ) ? 'site_transient' : 'transient';		
+		
+		$calendar = get_post( $calendar_ID );
+		$rm_cl = new RemoteCalendar();
+		$vcal_config = array(
+			'unique_id' => $remote_url,
+			'url'		=> $remote_url,
+		);
+		
+		$remote_data = new vcalendar( $vcal_config );
+		$remote_data->parse();
+		$remote_data->sort();
+		$rm_cl->sync( $remote_data , $calendar );
+		$expires = 60*60*24; // refresh dayly
+		call_user_func( "set_{$transient_callback}" , $transient_key , $remote_data , $expires );
 	}
 	
 	private function sync( $vcalendar , $parent_post ) {
@@ -480,7 +514,7 @@ class RemoteCalendar extends Calendar implements ICalendar {
 			);
 			if ( $new_post_ID = wp_insert_post( $post_data , false ) ) {
 				$sql_start = Calendar::vcal_to_sql_date( $start );
-				vaR_dump($new_post_ID,$post_name , $sql_start,$start);
+				
 				$sql_end = Calendar::vcal_to_sql_date( $end );
 				update_post_meta( $new_post_ID , '_event_start' , $sql_start );
 				update_post_meta( $new_post_ID , '_event_end' , $sql_start );

@@ -1,0 +1,355 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-Calendula v0.9.0b\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-08-19 09:55:10+0000\n"
+"Last-Translator: admin <joern@flyingletters.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: inc/class-CalendulaAdminUI.php:230
+#: inc/class-CalendulaCore.php:19
+#: inc/class-CalendulaCore.php:65
+#@ calendular
+msgid "Calendar"
+msgstr "Kalender"
+
+#: inc/class-CalendulaAdminUI.php:231
+#: inc/class-CalendulaCore.php:53
+#: inc/class-CalendulaCore.php:55
+#@ calendular
+msgid "Events"
+msgstr "Termine"
+
+#: inc/class-CalendulaAdminUI.php:253
+#@ calendular
+msgid "Calendar Type"
+msgstr "Kalender-Typ"
+
+#: inc/class-CalendulaAdminUI.php:255
+#@ calendular
+msgid "Local calendar"
+msgstr "Lokaler Kalender"
+
+#: inc/class-CalendulaAdminUI.php:256
+#@ calendular
+msgid "Calendar subscription"
+msgstr "Kalender Abonnement"
+
+#: inc/class-CalendulaAdminUI.php:259
+#@ calendular
+msgid "In a calendar subscription you specify an URL from where to load the events. In a local calendar you create events right on your blog"
+msgstr "In einem Kalender Abonnement tragen Sie eine URL ein, von der die Termine geladen werden. In einem lokalen Kalender erstellen Sie Termine direkt in Ihrem Blog."
+
+#: inc/class-CalendulaAdminUI.php:263
+#@ calendular
+msgid "Remote Settings"
+msgstr "Abo-Einstellungen"
+
+#: inc/class-CalendulaAdminUI.php:265
+#@ calendular
+msgid "Remote URL:"
+msgstr "Abonnement-URL:"
+
+#: inc/class-CalendulaAdminUI.php:268
+#@ calendular
+msgid "Enter the URL of the calendar. The Application will only accept data in vCalendar format."
+msgstr "Tragen Sie die URL des Kalenders ein. Es werden nur Daten im iCalendar-Format akzeptiert."
+
+#: inc/class-CalendulaAdminUI.php:273
+#@ calendular
+msgid "Syncing"
+msgstr "Synchronisierung"
+
+#: inc/class-CalendulaAdminUI.php:275
+#@ calendular
+msgid "Sync Calendar:"
+msgstr "Kalender Sync."
+
+#: inc/class-CalendulaAdminUI.php:277
+#@ calendular
+msgid "Don't sync"
+msgstr "Nicht Synchronisieren"
+
+#: inc/class-CalendulaAdminUI.php:278
+#@ calendular
+msgid "Daily"
+msgstr "Täglich"
+
+#: inc/class-CalendulaAdminUI.php:279
+#@ calendular
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: inc/class-CalendulaAdminUI.php:280
+#@ calendular
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: inc/class-CalendulaAdminUI.php:281
+#@ calendular
+msgid "Yearly"
+msgstr "Jährlich"
+
+#: inc/class-CalendulaAdminUI.php:283
+#@ calendular
+msgid "Sync now!"
+msgstr "Jetzt Syncen!"
+
+#: inc/class-CalendulaAdminUI.php:287
+#, php-format
+#@ calendular
+msgid "Last Sync: %1$s, %2$s"
+msgstr "Letzter Sync: %1$s, %2$s"
+
+#: inc/class-CalendulaAdminUI.php:292
+#@ calendular
+msgid "Never synced"
+msgstr "Noch nie synchronisiert"
+
+#: inc/class-CalendulaAdminUI.php:299
+#@ calendular
+msgid "See this calandar in "
+msgstr "Kalender im Format:"
+
+#: inc/class-CalendulaAdminUI.php:300
+#@ calendular
+msgid "HTML"
+msgstr "HTML"
+
+#: inc/class-CalendulaAdminUI.php:302
+#@ calendular
+msgid "vCal"
+msgstr "vCal"
+
+#: inc/class-CalendulaAdminUI.php:311
+#@ calendular
+msgid "Network"
+msgstr "Netzwerk"
+
+#: inc/class-CalendulaAdminUI.php:314
+#@ calendular
+msgid "This is a Network wide calendar."
+msgstr "Diesen Kalender im gesamten Netzwerk veröffentlichen"
+
+#: inc/class-CalendulaAdminUI.php:316
+#@ calendular
+msgid "Events in this Calendar will appear in all calendars in the Network."
+msgstr "Die Termine in diesem Kalender erschienen auf allen Blogs im Netzwerk."
+
+#: inc/class-CalendulaAdminUI.php:350
+#@ calendular
+msgid "Create new Event"
+msgstr "Neuen Termin erstellen"
+
+#: inc/class-CalendulaAdminUI.php:395
+#@ default
+msgid "Edit"
+msgstr ""
+
+#: inc/class-CalendulaAdminUI.php:402
+#@ default
+msgid "Delete"
+msgstr ""
+
+#: inc/class-CalendulaAdminUI.php:430
+#: inc/class-CalendulaCore.php:54
+#: inc/class-CalendulaFrontend.php:352
+#@ default
+#@ calendular
+msgid "Event"
+msgstr "Termin"
+
+#: inc/class-CalendulaAdminUI.php:472
+#@ calendular
+msgid "Calendar:"
+msgstr "Kalender:"
+
+#: inc/class-CalendulaAdminUI.php:481
+#@ calendular
+msgid "Date and Time"
+msgstr "Datum und Uhrzeit"
+
+#: inc/class-CalendulaAdminUI.php:485
+#@ calendular
+msgid "This is a full day event"
+msgstr "Ganztägiger Termin"
+
+#: inc/class-CalendulaAdminUI.php:491
+#@ calendular
+msgid "Start Date"
+msgstr "Beginn Datum"
+
+#: inc/class-CalendulaAdminUI.php:498
+#: inc/class-CalendulaAdminUI.php:513
+#@ calendular
+msgid "Time"
+msgstr "Uhrzeit"
+
+#: inc/class-CalendulaAdminUI.php:506
+#@ calendular
+msgid "End Date"
+msgstr "End Datum"
+
+#: inc/class-CalendulaCore.php:18
+#: inc/class-CalendulaCore.php:20
+#@ calendular
+msgid "Calendars"
+msgstr "Kalender"
+
+#: inc/class-CalendulaCore.php:21
+#@ calendular
+msgid "All Calendars"
+msgstr "Alle Kalender"
+
+#: inc/class-CalendulaCore.php:22
+#@ calendular
+msgctxt "calendar"
+msgid "Add new"
+msgstr "Erstellen"
+
+#: inc/class-CalendulaCore.php:23
+#@ calendular
+msgid "Add New Calendar"
+msgstr "Neuen Kalender hinzuf."
+
+#: inc/class-CalendulaCore.php:24
+#@ calendular
+msgid "Edit Calendar"
+msgstr "Kalender bearbeiten"
+
+#: inc/class-CalendulaCore.php:25
+#@ calendular
+msgid "New Calendar"
+msgstr "Neuer Kalender"
+
+#: inc/class-CalendulaCore.php:26
+#@ calendular
+msgid "View Calendar"
+msgstr "Kalender anschauen"
+
+#: inc/class-CalendulaCore.php:27
+#@ calendular
+msgid "Search Calendars"
+msgstr "Kalender suchen"
+
+#: inc/class-CalendulaCore.php:28
+#@ calendular
+msgid "No calendars found"
+msgstr "Kein Kalender gefunden"
+
+#: inc/class-CalendulaCore.php:29
+#@ calendular
+msgid "No calendars found in trash"
+msgstr "Kein Kalender im Papierkorb gefunden"
+
+#: inc/class-CalendulaCore.php:30
+#@ calendular
+msgid "parent Calendar"
+msgstr "Übergeordneter Kalender"
+
+#: inc/class-CalendulaCore.php:32
+#@ calendular
+msgid "A Calendar is a collection of events."
+msgstr "Ein Kalender ist einen Sammlung von Terminen"
+
+#: inc/class-CalendulaCore.php:56
+#@ calendular
+msgid "All Events"
+msgstr "Alle Termine"
+
+#: inc/class-CalendulaCore.php:57
+#@ calendular
+msgctxt "event"
+msgid "Add new"
+msgstr "Erstellen"
+
+#: inc/class-CalendulaCore.php:58
+#@ calendular
+msgid "Add New Event"
+msgstr "Neuen Termin erstellen"
+
+#: inc/class-CalendulaCore.php:59
+#@ calendular
+msgid "Edit Event"
+msgstr "Termin bearbeiten"
+
+#: inc/class-CalendulaCore.php:60
+#@ calendular
+msgid "New Event"
+msgstr "Neuer Termin"
+
+#: inc/class-CalendulaCore.php:61
+#@ calendular
+msgid "View Event"
+msgstr "Termin anschauen"
+
+#: inc/class-CalendulaCore.php:62
+#@ calendular
+msgid "Search Events"
+msgstr "Termine suchen"
+
+#: inc/class-CalendulaCore.php:63
+#@ calendular
+msgid "No event found"
+msgstr "Kein Termin gefunden"
+
+#: inc/class-CalendulaCore.php:64
+#@ calendular
+msgid "No event found in trash"
+msgstr "Keine Termin im Papierkorb gefunden"
+
+#: inc/class-CalendulaCore.php:67
+#@ calendular
+msgid "Events are gathered in a calendar."
+msgstr "Termine werden in einem Kalender zusammengefasst."
+
+#. translators: plugin header field 'Name'
+#: wp-calendula.php:0
+#@ calendular
+msgid "WP-Calendula"
+msgstr ""
+
+#. translators: plugin header field 'PluginURI'
+#: wp-calendula.php:0
+#@ calendular
+msgid "http://wordpress.org/plugins/"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: wp-calendula.php:0
+#@ calendular
+msgid "Simple Wordpress Calendar"
+msgstr "Ein einfacher Wordpress-Kalender"
+
+#. translators: plugin header field 'Author'
+#: wp-calendula.php:0
+#@ calendular
+msgid "Joern Lund"
+msgstr "Jörn Lund"
+
+#. translators: plugin header field 'AuthorURI'
+#: wp-calendula.php:0
+#@ calendular
+msgid "https://github.com/mcguffin"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: wp-calendula.php:0
+#@ calendular
+msgid "0.9.0b"
+msgstr ""
+
