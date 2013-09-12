@@ -96,6 +96,7 @@
 	width:14.28%;
 	overflow:hidden;
 	vertical-align:top;
+	padding:0;
 }
 .calendar .calendar-sheet .day.today {
 	background:rgba(200,0,0,0.3);
@@ -142,6 +143,7 @@
 
 .calendar .event .event-header h1 {
 	font-size:0.8em;
+	line-height:1.2em;
 	margin:0;
 	margin-bottom:0.25em;
 	padding:0;
@@ -166,5 +168,3 @@
 .calendar .event .event-meta .event-end {
 
 }
-
-

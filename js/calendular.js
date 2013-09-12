@@ -44,5 +44,4 @@
 		$('.calendar').calendar();
 	});
 
-
 })(jQuery);
