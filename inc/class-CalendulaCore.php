@@ -38,7 +38,7 @@ class CalendulaCore {
 			'show_in_menu' => true,
 			'menu_position' => 41,
 			'menu_icon' => plugins_url( 'img/calendar-icon.png' , dirname(__FILE__) ),
-			'capability_type' => 'posts',
+			'capability_type' => 'page',
 			'hierarchical' => false,
 			'supports' => array(
 				'title','editor','author',
@@ -70,7 +70,7 @@ class CalendulaCore {
 			'show_in_menu' => true,
 			'menu_position' => 42,
 			'menu_icon' => plugins_url( 'img/event-icon.png' , dirname(__FILE__) ),
- 			'capability_type' => 'posts',
+ 			'capability_type' => 'post',
 			'hierarchical' => false,
 			'supports' => array(
 				'title','editor','author',
