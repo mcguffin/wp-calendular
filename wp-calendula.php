@@ -6,8 +6,8 @@
 
 /*
 Plugin Name: WP-Calendula
-Plugin URI: http://wordpress.org/plugins/
-Description: Simple Wordpress Calendar
+Plugin URI: https://github.com/mcguffin/wp-calendular
+Description: Simple Wordpress Calendar.
 Author: Joern Lund
 Version: 0.9.0b
 Author URI: https://github.com/mcguffin

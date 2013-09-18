@@ -91,8 +91,8 @@
 .calendar .calendar-sheet {
 	background:rgba(0,0,0,0.1);
 }
-.calendar .calendar-sheet .day {
-	position:relative;
+.calendar .calendar-sheet td.day {
+	position:relative !important;
 	width:14.28%;
 	overflow:hidden;
 	vertical-align:top;
