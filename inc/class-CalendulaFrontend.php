@@ -88,8 +88,8 @@ class CalendulaFrontend {
 	static function enqueue_scripts() {
 		if ( ! is_admin() ) {
 			wp_enqueue_style( 'calendular' , plugins_url('/css/calendular.css' , dirname(__FILE__) ) );
-			wp_enqueue_script( 'jquery-address' , plugins_url('/js/jquery.address-1.5.min.js' , dirname(__FILE__) ) , array('jquery') );
-			wp_enqueue_script( 'calendular' , plugins_url('/js/calendular.js' , dirname(__FILE__) ) , array('jquery','jquery-address') );
+			wp_enqueue_script( 'jquery-address' , plugins_url('/js/jquery.address-1.5.min.js' , dirname(__FILE__) ) , array('jQuery') );
+			wp_enqueue_script( 'calendular' , plugins_url('/js/calendular.js' , dirname(__FILE__) ) , array('jQuery','jquery-address') );
 		}
 	}
 	static function query_vars( $qvs ){
