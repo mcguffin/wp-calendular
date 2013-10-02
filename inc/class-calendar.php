@@ -437,15 +437,13 @@ class RemoteCalendar extends Calendar implements ICalendar {
 			$expires = $schedules[$sync_interval]['interval']; // refresh dayly
 			call_user_func( "set_{$transient_callback}" , $transient_key , $remote_data , $expires );
 		}
-		
-		if ( $sync_interval = $calendar_data['_calendar_remote_sync_interval'] ) {
-			
+
+		if ( $sync_interval = strtolower($calendar_data['_calendar_remote_sync_interval'] ) ) {
 			$cron_task_hook = "calendar_cron_{$sync_interval}";
+			
 			if ( ! wp_next_scheduled( $cron_task_hook ) )
-				wp_schedule_event( time(), $sync_interval , $cron_task_hook );
+				$res = wp_schedule_event( time(), $sync_interval , $cron_task_hook );
 		}
-		
-		
 		
 		// delete everything afterwards.
 		

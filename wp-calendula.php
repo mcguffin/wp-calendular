@@ -109,7 +109,6 @@ function calendar_cron_sync( $period = 'yearly' ){
 	
 	foreach ( $res as $ID )
 		RemoteCalendar::synchronize_calendar($ID);
-	
 }
 
 add_action('calendar_cron_yearly' , 'calendar_cron_yearly' );
