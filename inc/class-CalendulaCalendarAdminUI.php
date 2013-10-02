@@ -13,8 +13,6 @@ class CalendulaCalendarAdminUI {
 			// add meta boxes...
 			add_action( 'save_post' , array(__CLASS__,'update_calendar_meta') , 10 , 2 );
 			add_action( 'load-post.php' , array( __CLASS__ , 'change_redirect_after_delete' ) );
-			add_action( 'load-post.php' , array( __CLASS__ , 'include_datepicker' ) );
-			add_action( 'load-post-new.php' , array( __CLASS__ , 'include_datepicker' ) );
 
 			add_filter( 'manage_calendar_posts_custom_column' , array( __CLASS__ , 'print_custom_column' ),10,2);
 			add_filter( 'manage_calendar_posts_columns' , array( __CLASS__ , 'add_custom_columns' ));
@@ -37,57 +35,6 @@ class CalendulaCalendarAdminUI {
 		}
 	}
 
-	public static function include_datepicker(){
-		add_action( 'admin_head', array( __CLASS__ , 'print_calendar_css' ) );
-	}
-	public function print_calendar_css(){
-		?><style type="text/css">
-		#calendar_options .inside {
-			padding:0;
-		}
-		
-		
-		.date-sheet {
-			position:relative;
-			float:left;
-			background:#ffffff;
-			box-shadow:1px 1px 5px rgba(0,0,0,0.5);
-			padding:0;
-			text-align:center;
-			width:4em;
-		}
-		.date-sheet .month {
-			padding:0.125em;
-			font-size:0.8em;
-			color:#fff;
-			background-color:#990000;
-			font-weight:700;
-		}
-		.date-sheet .day {
-			padding:0.125em;
-			font-size:1.5em;
-			color:#000;
-			font-weight:700;
-		}
-		.date-sheet .year {
-			padding:0.125em;
-			font-size:1.0em;
-			color:#666;
-			background-color:#dfdfdf;
-		}
-		.date-col .time {
-			position:relative;
-			float:left;
-			margin-left:0.5em;
-			padding:0.5em;
-			font-size:1.0em;
-			color:#666;
-			background:#ffffff;
-			box-shadow:1px 1px 5px rgba(0,0,0,0.5);
-		}
-		
-		</style><?php
-	}
 	public static function change_redirect_after_delete() {
 		if ( isset( $_GET['post'] ) )
 			$post_id = (int) $_GET['post'];
@@ -210,16 +157,17 @@ class CalendulaCalendarAdminUI {
 				
 				?></div>
 			</div>
-			<div class="calendar-type-settings misc-pub-section local" id="calendar-settings-local"><?php
-			_e( 'See this calandar in ' , 'calendular' );
-				?><a href="<?php echo get_permalink(); ?>"><?php _e( 'HTML' , 'calendular' ) ?></a><?php
-				?> | <?php
-				?><a href="<?php echo add_query_arg('calendar_format','ics',get_permalink()); ?>"><?php _e( 'iCal' , 'calendular' ) ?></a><?php
-			// no local settings yet
-			?></div>
+			<?php if ($post->post_status == 'publish' ) : ?>
+				<div class="calendar-type-settings misc-pub-section local" id="calendar-settings-local"><?php
+				_e( 'See this calandar in ' , 'calendular' );
+					?><a href="<?php echo get_permalink(); ?>"><?php _e( 'HTML' , 'calendular' ) ?></a><?php
+					?> | <?php
+					?><a href="<?php echo add_query_arg('calendar_format','ics',get_permalink()); ?>"><?php _e( 'iCal' , 'calendular' ) ?></a><?php
+				// no local settings yet
+				?></div><?php
+			endif;
 			
-			
-			<?php  
+			?><?php  
 			if ( is_multisite() && is_main_site() && is_calendula_active_for_network() ) {
 			?>
 			<div class="misc-pub-section" id="calendar-settings">

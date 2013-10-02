@@ -87,7 +87,6 @@ class Calendar {
 			// restrict events to range
 			$event->start = max( $range_from , $event->start );
 			$event->end   = min( $range_to , $event->end );
-			
 			if ( $range_scope == 'month' ) {
 				$this->merge_event( $events , $event );
 			} else {
@@ -135,6 +134,8 @@ class Calendar {
 	function merge_event( &$events , $event ) {
 		$event_start_utime = strtotime($event->start);
 		$event_end_utime = strtotime($event->end);
+		if ( $event->full_day )
+			$event_end_utime-=1;
 		$count_days = floor(($event_end_utime-$event_start_utime) / (3600*24) );
 		
 		for ( $i=0;$i<=$count_days;$i++) {
@@ -517,7 +518,7 @@ class RemoteCalendar extends Calendar implements ICalendar {
 				
 				$sql_end = Calendar::vcal_to_sql_date( $end );
 				update_post_meta( $new_post_ID , '_event_start' , $sql_start );
-				update_post_meta( $new_post_ID , '_event_end' , $sql_start );
+				update_post_meta( $new_post_ID , '_event_end' , $sql_end );
 				update_post_meta( $new_post_ID , '_event_full_day' , !isset( $start['hour'],$start['min'],$start['sec'] ) );
 				if ( $repeat ) {
 					if ( $repeat['INTERVAL'] != 1 && isset( $repeat['BYMONTH'] ) ) {

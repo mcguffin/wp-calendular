@@ -29,11 +29,20 @@
 			else
 				$('.calendar').load(url);
 		});
+		
+		$(document).on('click','*',function(){
+			$('.calendar .expanded').removeClass('expanded');
+		})
+		
 		return this.each(function() {
 			$(this).on('click','.prev-sheet, .next-sheet' , null , function() {
 				var url =  nice_cal_url( $(this).data('href-html') );
 				$.address.value(url);
 				$current_calendar = $(this).closest('.calendar');
+				return false;
+			}).on('click','.event-link',function(){
+				$('.calendar .expanded').removeClass('expanded');
+				$(this).closest('.event').toggleClass('expanded').closest('.day').toggleClass('expanded');
 				return false;
 			});
 		});
