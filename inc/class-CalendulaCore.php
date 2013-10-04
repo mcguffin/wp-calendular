@@ -30,9 +30,9 @@ class CalendulaCore {
 				'parent_item_colon' => __( 'parent Calendar' , 'calendular' ),
 			),
 			'description' => __( 'A Calendar is a collection of events.' , 'calendular' ),
-			'public' => true,
-			'has_archive' => true,
-			'rewrite' => array('slug' => 'calendars'),
+			'public' => false,
+			'has_archive' => false,
+//			'rewrite' => array('slug' => 'calendars'),
 
 			'show_ui' => true,
 			'show_in_menu' => true,
@@ -47,6 +47,9 @@ class CalendulaCore {
 			'register_meta_box_cb' => array( 'CalendulaCalendarAdminUI' , 'calendar_meta_boxes' ),
 		) );
 		
+		global $wpdb;
+		$has_calendars = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE post_type='calendar' AND post_status NOT IN('auto-draft','trash');" );
+
 		register_post_type( 'event' , array( 
 //			'label' => __( 'Events' , 'calendular' ),
 			'labels' => array(
@@ -65,20 +68,20 @@ class CalendulaCore {
 				'parent_item_colon' => __( 'Calendar' , 'calendular' ),
 			),
 			'description' => __( 'Events are gathered in a calendar.' , 'calendular' ),
-			'public' => true,
-			'show_ui' => true,
-			'show_in_menu' => true,
+			'public' => false,
+			'show_ui' => (bool)$has_calendars,
+			'show_in_menu' => (bool)$has_calendars,
 			'menu_position' => 42,
 			'menu_icon' => plugins_url( 'img/event-icon.png' , dirname(__FILE__) ),
- 			'capability_type' => 'post',
+			'capability_type' => 'post',
 			'hierarchical' => false,
 			'supports' => array(
 				'title','editor','author',
 			),
 			'can_export' => true,
 			'register_meta_box_cb' => array( 'CalendulaEventAdminUI' , 'event_meta_boxes' ),
-			'has_archive' => true,
-			'rewrite' => true,
+			'has_archive' => false,
+			'rewrite' => false,
 		) );
 		// add event to Calendar menu
 
