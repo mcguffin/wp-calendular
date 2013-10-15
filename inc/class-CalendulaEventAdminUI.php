@@ -20,16 +20,19 @@ class CalendulaEventAdminUI {
 			
 			add_filter( 'manage_event_posts_custom_column' , array( __CLASS__ , 'print_custom_column' ),10,2);
 			add_filter( 'manage_event_posts_columns' , array( __CLASS__ , 'add_custom_columns' ));
-		
-		
+			
 		}
+		add_action('init',array(__CLASS__,'wp_init'));
+	//	add_action( 'admin_init', array( __CLASS__ , 'enqueue_scripts' ) );
+	}
+	
+	static function wp_init() {
 		wp_register_style( 'jquery-ui-all' , plugins_url('/css/jquery-ui-1.10.3.custom.min.css' , dirname(__FILE__) ) );
 		wp_register_script( 'modernizr' , plugins_url('/js/modernizr.custom.85851.js' , dirname(__FILE__) ) );
 		wp_register_script( 'jquery-ui-timepicker' , plugins_url('/js/jquery-ui-timepicker-addon.min.js' , dirname(__FILE__) ) , array( 'jquery-ui-datepicker','jquery-ui-slider' ) );
 
 		wp_register_style( 'calendular-admin' , plugins_url('/css/calendular-admin.css' , dirname(__FILE__) ) , array('jquery-ui-all'));
 		wp_register_script( 'calendular_admin' , plugins_url('/js/calendular-admin.js' , dirname(__FILE__) ) , array('modernizr','jquery','jquery-ui-timepicker'),'1.1');
-	//	add_action( 'admin_init', array( __CLASS__ , 'enqueue_scripts' ) );
 	}
 	
 	static function add_custom_columns( $columns ) {
