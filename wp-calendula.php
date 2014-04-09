@@ -120,7 +120,6 @@ add_action('calendar_cron_daily' , 'calendar_cron_daily' );
 //add_action('init','calendar_cron_weekly',99);
 
 require_once( dirname(__FILE__). '/inc/vendor/iCalcreator/iCalcreator.class.php' );
-require_once( dirname(__FILE__). '/inc/class-Calendar.php' );
 require_once( dirname(__FILE__). '/inc/class-CalendulaCalendarAdminUI.php' );
 require_once( dirname(__FILE__). '/inc/class-CalendulaEventAdminUI.php' );
 require_once( dirname(__FILE__). '/inc/class-CalendulaCore.php' );
