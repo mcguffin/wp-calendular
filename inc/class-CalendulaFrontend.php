@@ -41,7 +41,6 @@ class CalendulaFrontend {
 		$post_type = get_query_var('post_type');
 		
 		//wp_enqueue_style( 'calendular' , plugins_url('/css/calendular.css' , dirname(__FILE__) ) );
-		
 		if ( ($post_type  == 'calendar' || $post_type == 'event' ) ) {
 			// enqueue calendar script
 			
@@ -145,8 +144,6 @@ class CalendulaFrontend {
 				break;
 
 			case 'html':
-				if ( ! $range_str )
-					$range_str = '000000';
 				$range = Calendar::get_calendar_range( $range_str );
 				$original_range = $range["from"];
 				$range = Calendar::monthsheet_expand_range($range);

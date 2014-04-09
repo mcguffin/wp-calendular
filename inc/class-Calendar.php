@@ -187,7 +187,7 @@ class Calendar {
 		return $e_query;
 	}
 	
-	function monthsheet_expand_range( $range , $return_array = true ) {
+	static function monthsheet_expand_range( $range , $return_array = true ) {
 		if ( ! is_array( $range ) )
 			$range = Calendar::get_calendar_range( $range );
 		extract( $range , EXTR_PREFIX_ALL , 'range' ); // $range_from,$range_to

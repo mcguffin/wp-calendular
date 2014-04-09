@@ -31,7 +31,7 @@ class CalendulaCore {
 			),
 			'description' => __( 'A Calendar is a collection of events.' , 'calendular' ),
 			'public' => true,
-			'has_archive' => false,
+			'has_archive' => true,
 //			'rewrite' => array('slug' => 'calendars'),
 
 			'show_ui' => true,
