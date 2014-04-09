@@ -157,10 +157,11 @@ class CalendulaFrontend {
 					$calendar->merge_events( $events , $network_events );
 				}
 				
-				
 				$days = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday',);
 				$months = array('January','February','March','April','May','June','July','August','September','October','November','December');
 
+				$nav_tpl = '<span class="next month">%1$s.</span> <span class="next year">%2$s</span>';
+				
 				$original_range_time = strtotime($original_range);
 				$pta_link = get_post_type_archive_link('calendar');
 				$pta_link = str_replace( home_url() , '' , $pta_link );
@@ -168,7 +169,7 @@ class CalendulaFrontend {
 				$href_prev = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_prev ) );
 				$href_prev_html = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_prev ) , $pta_link );
 				$href_prev_html = add_query_arg( 'calendar_format','html',$href_prev_html );
-				$name_prev = sprintf( '<span class="prev month">%1$s</span><span class="prev year">%2$s</span>', 
+				$name_prev = sprintf( $nav_tpl, 
 					__( strftime('%b',$time_prev) ) , 
 					strftime('%Y',$time_prev) 
 				);
@@ -177,7 +178,7 @@ class CalendulaFrontend {
 				$href_next = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_next ) );
 				$href_next_html = add_query_arg( 'calendar_range' , strftime( "%Y%m" , $time_next ) , $pta_link );
 				$href_next_html = add_query_arg( 'calendar_format','html',$href_next_html );
-				$name_next = sprintf( '<span class="next month">%1$s</span><span class="next year">%2$s</span>', 
+				$name_next = sprintf( $nav_tpl , 
 					__( strftime('%b',$time_next ) ) , 
 					strftime('%Y',$time_next) 
 				);
@@ -230,12 +231,14 @@ class CalendulaFrontend {
 					for ( $i=0 ; $i < 7; $i++ ) {
 						$day_of_week = intval(strftime( '%w' , $utime ));
 						$day_class = array( 'day' );
+						$day_container_class = array( 'day-container' );
 						if ( strftime('%Y-%m-%d') == strftime('%Y-%m-%d' , $utime ) )
 							$day_class[] = 'today';
 						if ( intval($range_scopename[ 'month' ]) == strftime('%m' , $utime ) )
 							$day_class[] = 'in-monthsheet';
 
 						$result .= '<td class="'. implode(' ',$day_class ) .'">';
+						$result .= '<div class="'. implode(' ',$day_container_class ) .'">';
 						$result .= '<time datetime="'. strftime( '%Y-%m-%d' , $utime ). '" class="day-number">'. strftime( '%d' , $utime ) . '</time>'; 
 						
 						$result .= '<div class="calendar-events">';
@@ -262,15 +265,19 @@ class CalendulaFrontend {
 								$result .= '<div class="event-content">';
 								$result .= $event->post_content;
 								$result .= '</div>';
-								$result .= '<footer class="event-meta">';
-								$date_fmt = $event->full_day ? '%Y-%m-%d' : '%Y-%m-%d %H:%M';
 								
-								$result .= '<time datetime="'. $event->start.'" class="event-start">'. strftime( '%Y-%m-%d %H:%M' , strtotime( $event->start ) ).'</time>'; 
-								$result .= '<time datetime="'. $event->end.'" class="event-start">'. strftime( '%Y-%m-%d %H:%M' , strtotime( $event->end ) ).'</time>'; 
+								$result .= '<footer class="event-meta">';
+								$date_fmt = get_option('date_format');
+								if ( ! $event->full_day ) 
+									 $date_fmt .= ' '.get_option('time_format');;
+
+								$result .= '<p><time datetime="'. $event->start.'" class="event-start">'. date( $date_fmt , strtotime( $event->start ) ).'</time> '.__('to','calendular').' <br />'; 
+								$result .= '<time datetime="'. $event->end.'" class="event-end">'. date( $date_fmt , strtotime( $event->end ) ).'</time></p>'; 
 								$result .= '</footer>';
 								$result .= '</article>';
 							}
 						}
+						$result .= '</div>';
 						$result .= '</td>';
 						$utime += 60*60*24;
 					}
@@ -352,7 +359,7 @@ class CalendulaFrontend {
 		if ( $taxonomy == 'post_format' ) {
 			$terms[] = (object) array(
 				'term_id' => 0,
-				'name' => __('Event'),
+				'name' => __('Event','calendular'),
 				'slug' => 'post-format-event',
 				'term_group' => '0',
 				'term_taxonomy_id' => '0',
