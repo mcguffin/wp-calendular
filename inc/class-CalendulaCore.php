@@ -30,7 +30,7 @@ class CalendulaCore {
 				'parent_item_colon' => __( 'parent Calendar' , 'calendular' ),
 			),
 			'description' => __( 'A Calendar is a collection of events.' , 'calendular' ),
-			'public' => false,
+			'public' => true,
 			'has_archive' => false,
 //			'rewrite' => array('slug' => 'calendars'),
 

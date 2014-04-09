@@ -55,7 +55,7 @@ class CalendulaEventAdminUI {
 	
 	/* event */
 	public static function enqueue_scripts() {
-		if ($_REQUEST['post_type']=='event') {
+		if ( isset( $_REQUEST['post_type'] ) && $_REQUEST['post_type'] =='event') {
 			wp_enqueue_style( 'jquery-ui-all' );
 			wp_enqueue_style('calendular-admin');
 		

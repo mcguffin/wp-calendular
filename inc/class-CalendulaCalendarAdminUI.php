@@ -74,12 +74,10 @@ class CalendulaCalendarAdminUI {
 			
 			foreach ( $calendar as $key => $value )
 				update_post_meta( $post_ID , $key , $value );
+				
 			if ( 'remote' === $calendar['_calendar_type'] ) {
 				$cal = new RemoteCalendar();
 				$cal->init( $post , $calendar );
-				
-			} else {
-				
 			}
 		}
 	}

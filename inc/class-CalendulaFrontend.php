@@ -6,7 +6,7 @@
 if ( !class_exists('CalendulaFrontend') ):
 
 class CalendulaFrontend {
-	function init() {
+	static function init() {
 		add_filter( 'query_vars', array(__CLASS__,'query_vars') );
 		add_filter( 'template_redirect', array(__CLASS__,'template_redirect') );
 		// enqueue calendar script
