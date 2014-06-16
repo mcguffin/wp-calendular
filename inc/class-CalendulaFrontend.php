@@ -155,7 +155,7 @@ class CalendulaFrontend {
 				}
 				
 				$days = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday',);
-				$months = array('January','February','March','April','May','June','July','August','September','October','November','December');
+				$months = array(__('January'),__('February'),__('March'),__('April'),__('May'),__('June'),__('July'),__('August'),__('September'),__('October'),__('November'),__('December'));
 
 				$nav_tpl = '<span class="next month">%1$s.</span> <span class="next year">%2$s</span>';
 				
@@ -190,7 +190,11 @@ class CalendulaFrontend {
 				$result .= '<h1>';
 				// put some prev and next links
 				$result .= '<span class="monthname">';
+				/*
+				$result .= strftime('%B',$original_range_time ); 
+				/*/
 				$result .= $months[ intval($range_scopename[ 'month' ])-1 ];
+				//*/
 				$href_today = add_query_arg( 'calendar_range' , '000000' );
 				$result .= '</span>';
 
