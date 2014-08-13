@@ -10,7 +10,7 @@ class CalendularInstaller {
 	public static function activate() {
 		// check if 
 		if ( is_calendula_active_for_network( ) ) {
-			global $wp_rewrite;
+			global $wp_rewrite, $wpdb;
 			$blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
 			foreach ( $blogids as $blog_id) {
 				switch_to_blog($blog_id);
