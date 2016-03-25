@@ -1,6 +1,4 @@
 wp-calendular
 =============
 
-WordPress Calendar with network capabilities
-
-more to come.
+This Rpository has been [moved](https://bitbucket.org/polyplanet/wp-calendular).
